@@ -50,11 +50,9 @@
             </li>
 
             <li class="colorlib-active">
-              <h3><a href="past_content.html">Past Year Papers</a></h3>
+              <h3><a href="past_content.html">Competitors Handbook</a></h3>
             </li>
-            <li>
-              <h3><a href="gallery.html">Past Year Media</a></h3>
-            </li>
+            <li></li>
             <li>
               <h3><a href="about.html">About</a></h3>
             </li>
@@ -85,32 +83,56 @@
                       style="padding-top: 20px"
                       class="qualifying-paper-year"
                     >
-                      <h2>KLSMC Qualifying Papers - 2023</h2>
+                      <h2>Round 2 Part 2 - Dr TxT.exe Room Cipher</h2>
                       <p class="descriptor">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Porro nihil corporis eveniet adipisci repellendus
-                        quaerat cupiditate consequatur hic quidem, modi velit
-                        aliquam soluta pariatur est sequi aspernatur nam
-                        perferendis temporibus!
+                        Now you know the location, its time to figure out the exact room number. You are given clues that the specific room number is represented by a 6 character code which further symbolises the actual room number. The code is formatted such that the first two and last 4 characters are separated by a dash. 
                       </p>
-                      <a
-                        href="https://drive.usercontent.google.com/u/3/uc?id=1yBU29tWgZWFH9Up0nYCLT1OXxOgG2wCE&export=download"
-                        class="btn btn-primary"
-                        >Download Papers</a
-                      >
-                      <a
-                        href="https://drive.usercontent.google.com/u/3/uc?id=1aZBBvLKxs-TD7Bqh3K_je0hxUdfIDhIJ&export=download"
-                        style="margin-left: 20px"
-                        class="btn btn-primary"
-                        >Mark Scheme</a
-                      >
+                      <ul>
+                        <li>The first digit is an anagram of the string and can be modified by using a Caesar Cipher based off a note the victim left before he died (Hqjw Ghdtrm Uxvhq)</li>
+                      </ul>
+                      <p>This is a cipher with a shift of 7 applied, but only to the consonants. Vowels (A, E, I, O, U) should remain unchanged. Decrypt this message to find the first character of the code.</p>
+                      <ul>
+                        <li>The second character is hidden in the fibonacci sequence and is hidden and manipulated by a modulo operator: 
+                            <ul>
+                                <li>However, to get the second character, you need to find the sum of the Fibonacci numbers at indices that are prime (1-based index). After summing them, take the result modulo 10 to get a single digit.</li>
+                            </ul>
+                        </li>
+                      </ul>
+                      <ul>
+                        <li>The third character is hidden within a cryptic anagram:
+                            Eihtf Tsno 80
+                        </li>
+                      </ul>
+                      <p>You need to unscramble the letters and combine it with the number at the end of the anagram. The unscrambled phrase describes an hour of the day, and the number at the end gives you the minute. The third character will be the sum of the hour and minute, modulo 6.</p>
+                      <ul>
+                        <li>The fourth character is related to prime numbers. The victim’s journal contains the phrase:<br>
+                            Check the sum of the first N primes where N is the 5th prime number. <br>
+                           </li>
+                      </ul>
+                      <p>To solve this, find the sum of the first 5 primes and then take this sum modulo 9 to get a single-digit number.</p>
+                      <ul>
+                        <li>The fifth character is encrypted using base64 encoding. The encrypted text is:</li>
+                        <li>U29ycnkgdGhpcyBpcyBhIGZpbmUgbW9zdCBzZWFyY2h5IHdoZW4gdGhhdCBvbmUgaGVscGVkIHRoZSBtYW5nbGVzLCBvcmRlcmVkIGluIGhlbHAgb3V0IHRoZSBwYXRoIG9mIHdoZXRoZXIgdXJlIGVjbGlmZGVzIHRoZSBvcmRlciBwb3NpdGlvbnMu</li>
+                      </ul>
+                      <p>Decode the base64 string and extract the first letter of the decoded message as the fifth character.</p>
+                      <ul>
+                        <li>The final character is related to a complex number calculation. A note in the victim’s wallet stated:</li>
+                        <li>‘Find the square root of the sum of the squares of 101 and 200, then subtract 10.’</li>
+                      </ul>
+                      <p>Use this result to determine the last digit of the square root. This will be the final character of the code.</p>
+                      <h4>Prompt:</h4>
+                      <p>Using the clues, write a Python function find_code() that returns the 6-character code that reveals the room number and identity   </p>
+                      <a href="./temp.html" class="btn btn-primary"
+                      >Enter Here</a>
                     </div>
+                
                   </div>
                   <!-- Add more years as needed -->
                 </div>
               </div>
             </section>
           </div>
+          
         </body>
       </html>
 

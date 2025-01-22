@@ -272,45 +272,54 @@
             </section>
           </div>
           <script>
-            document.addEventListener("DOMContentLoaded", function () {
-  fetch(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vTnJWPhzpH31vSrsvp7Wtk--Ns_3m_52zBsZSE7nkAcMrdORDyb0G5lOXZLYXqx6H5G4eFzqFEjT_7q/pub?output=csv"
-  )
-    .then((response) => response.text())
-    .then((csv) => {
-      let lines = csv.split("\n"); // Split CSV into lines
-      let result = []; // This will contain the array of objects (leaderboard entries)
+    document.addEventListener("DOMContentLoaded", function () {
+    // Fetch data from the Google Sheets CSV
+    fetch(
+      "https://docs.google.com/spreadsheets/d/e/2PACX-1vTea1Hp5rkgRfh49dopeM58Q6F4qVSrZRQWIHmjPYYjabpf1hCtiB4_8waPVBgmMCjCbU5mn3fPb7II/pub?gid=1927463165&single=true&output=csv"
+    )
+      .then((response) => response.text())
+      .then((csv) => {
+        let lines = csv.split("\n"); // Split CSV into lines
+        console.log("CSV Preview:", lines.slice(0, 5)); // Debug the first few lines
 
-      let headers = lines[0].split(",").map((header) => header.trim()); // Split the first line into headers and trim
+        let result = []; // This will store the leaderboard data
 
-      for (let i = 1; i < lines.length; i++) {
-        let obj = {};
-        let currentline = lines[i].split(",").map((cell) => cell.trim());
+        // Loop through rows (start from row 2 to skip the header)
+        for (let i = 1; i < lines.length; i++) {
+          let currentline = lines[i].split(",").map((cell) => cell.trim());
 
-        for (let j = 0; j < headers.length; j++) {
-          obj[headers[j]] = currentline[j];
+          // Skip rows without valid data (e.g., missing Team ID or Total)
+          if (currentline.length < 4 || !currentline[0] || isNaN(Number(currentline[3]))) {
+            continue;
+          }
+
+          // Extract Team ID and Total
+          let teamID = currentline[0]; // Column A
+          let total = Number(currentline[3]); // Column D
+
+          result.push({ "Team ID": teamID, Total: total });
         }
-        obj["Total"] = Number(obj["Total"]) || 0; // Convert points to a number if it is a valid number
-        result.push(obj);
-      }
 
-      result.sort((a, b) => b["Total"] - a["Total"]); // Sort the result array by points in descending order
+        // Sort by Total (descending)
+        result.sort((a, b) => b.Total - a.Total);
 
-      let top10 = result.slice(0, 15); // Now top10 is an array of objects sorted by points and limited to top 15
+        // Limit to top 15 entries
+        let top15 = result.slice(0, 15);
 
-      const tableBody = document.getElementById("leaderboardTable").getElementsByTagName("tbody")[0];
-      tableBody.innerHTML = ""; // Clear existing table body
+        // Update the leaderboard table
+        const tableBody = document
+          .getElementById("leaderboardTable")
+          .getElementsByTagName("tbody")[0];
+        tableBody.innerHTML = ""; // Clear existing table content
 
-      top10.forEach((row, index) => {
-        let tr = document.createElement("tr");
-        // Include the position as (index + 1) since index is 0-based
-        tr.innerHTML = `<td>${index + 1}</td><td>${row["Team ID"]}</td><td>${row["Total"]}</td>`;
-        tableBody.appendChild(tr);
-      });
-    })
-    .catch((error) => console.error("Error:", error));
-});
-
+        top15.forEach((row, index) => {
+          let tr = document.createElement("tr");
+          tr.innerHTML = `<td>${index + 1}</td><td>${row["Team ID"]}</td><td>${row.Total}</td>`;
+          tableBody.appendChild(tr);
+        });
+      })
+      .catch((error) => console.error("Error:", error));
+  });
 
             const sections = [
               { id: "fermi", duration: 60 * 5 }, // 5 minutes for Fermi Problems

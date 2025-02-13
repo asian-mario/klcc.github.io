@@ -23,11 +23,11 @@
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-    <div id="colorlib-page" style="padding-right: 15rem;">
-      <div id="colorlib-main" style="padding-right: 20rem;">
+    <div id="colorlib-page" style="margin-right: 15rem;">
+      <div id="colorlib-main" style="margin-right: 20rem;">
         <section
           class="ftco-section ftco-no-pt ftco-no-pb"
-          style="padding-left: 40%; padding-right: 30%; padding-top: 17rem"
+          style="margin-left: 40%; margin-right: 30%; margin-top: 17rem"
         >
           <div class="login-container">
             <h2>Enter Password</h2>
@@ -43,10 +43,19 @@
         const password = document.getElementById("password").value;
 
         // Map passwords to their respective pages
+        /*
+          if you're reading this text. fuck off, you aren't meant to be here. cheating is for losers, and i'm a solo man team that put this together ALONE and i know it's not very good.
+          so play ball. and plau fairly.
+        */
         const passwordRedirectMap = {
-          "p1": "r2p1.html", // Redirect to page1.html
-          "password2": "r2p2.html", // Redirect to page2.html
-          "password3": "r2p3.html", // Redirect to page3.html
+          "103": "r2p1.html", // Redirect to page1.html
+          "Resorts World Genting Shopping Mall": "r2p2.html", 
+          "A341y": "r2p3.html", 
+          "8.067171309": "r2p3.html", 
+          "148257": "r3p1.html",
+          "77": "r3p2.html",
+          "110914898652": "r3p3.html",
+          "Machete": "r4.html",
         };
 
         if (password in passwordRedirectMap) {
